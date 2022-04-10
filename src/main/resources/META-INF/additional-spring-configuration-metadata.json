@@ -1,0 +1,24 @@
+{
+  "properties": [
+    {
+      "name": "mybatis.tenant.scan-package",
+      "type": "java.lang.String",
+      "description": "多租户实体类包路径，不配置则不开启多租户."
+    },
+    {
+      "name": "mybatis.tenant.db-field",
+      "type": "java.lang.String",
+      "description": "数据库租户id字段，默认tenant_id."
+    },
+    {
+      "name": "mybatis.tenant.entity-field",
+      "type": "java.lang.String",
+      "description": "实体类租户id字段，默认tenantId."
+    },
+    {
+      "name": "mybatis.tenant.header",
+      "type": "java.lang.String",
+      "description": "租户id请求头，默认Tenant-Id."
+    }
+  ]
+}
