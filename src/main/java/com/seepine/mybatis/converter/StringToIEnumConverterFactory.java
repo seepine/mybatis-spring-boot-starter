@@ -1,4 +1,4 @@
-package com.seepine.mybatis.enums;
+package com.seepine.mybatis.converter;
 
 import com.baomidou.mybatisplus.annotation.IEnum;
 import org.springframework.core.convert.converter.Converter;
@@ -16,10 +16,11 @@ public class StringToIEnumConverterFactory implements ConverterFactory<String, I
 
   @Override
   @NonNull
+  @SuppressWarnings("unchecked")
   public <E extends IEnum<String>> Converter<String, E> getConverter(@NonNull Class<E> targetType) {
     Converter<String, E> converter = CONVERTERS.get(targetType);
     if (converter == null) {
-      converter = new com.seepine.mybatis.enums.IEnumConverter<>(targetType);
+      converter = new IEnumConverter<>(targetType);
       CONVERTERS.put(targetType, converter);
     }
     return converter;

@@ -1,4 +1,4 @@
-package com.seepine.mybatis.enums;
+package com.seepine.mybatis.converter;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
@@ -13,5 +13,7 @@ public class EnumWebMvcConfig implements WebMvcConfigurer {
   @Override
   public void addFormatters(@NonNull FormatterRegistry registry) {
     registry.addConverterFactory(new StringToIEnumConverterFactory());
+    registry.addConverter(new LocalDateTimeConverter.StringToLocalDateTimeConverter());
+    registry.addConverter(new LocalDateTimeConverter.StringToLocalDateConverter());
   }
 }

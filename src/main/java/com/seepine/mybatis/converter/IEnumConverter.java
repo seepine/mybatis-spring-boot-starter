@@ -1,4 +1,4 @@
-package com.seepine.mybatis.enums;
+package com.seepine.mybatis.converter;
 
 import com.baomidou.mybatisplus.annotation.IEnum;
 import lombok.extern.slf4j.Slf4j;
