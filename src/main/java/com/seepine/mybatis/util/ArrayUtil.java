@@ -11,12 +11,23 @@ import java.util.stream.Collectors;
 public class ArrayUtil {
   private static final String COMMA = ",";
 
+  public static String joinOfLong(List<Long> list) {
+    if (list == null || list.isEmpty()) {
+      return null;
+    }
+    StringBuilder sb = new StringBuilder();
+    for (Object item : list) {
+      sb.append(item).append(COMMA);
+    }
+    return sb.toString();
+  }
+
   public static String join(List<String> list) {
     if (list == null || list.isEmpty()) {
       return null;
     }
     StringBuilder sb = new StringBuilder();
-    for (String item : list) {
+    for (Object item : list) {
       sb.append(item).append(COMMA);
     }
     return sb.toString();
@@ -56,6 +67,14 @@ public class ArrayUtil {
     }
     String[] arr = str.split(COMMA);
     return Arrays.asList(arr);
+  }
+
+  public static List<Long> convertToLong(String str) {
+    if (isBlank(str)) {
+      return new ArrayList<>();
+    }
+    String[] arr = str.split(COMMA);
+    return Arrays.stream(arr).map(Long::new).collect(Collectors.toList());
   }
 
   public static boolean isBlank(String str) {
