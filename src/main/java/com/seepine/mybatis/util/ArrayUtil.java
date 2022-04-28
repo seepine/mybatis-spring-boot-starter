@@ -19,7 +19,7 @@ public class ArrayUtil {
     for (Object item : list) {
       sb.append(item).append(COMMA);
     }
-    return sb.toString();
+    return sb.substring(0, sb.length() - 1);
   }
 
   public static String join(List<String> list) {
@@ -30,7 +30,7 @@ public class ArrayUtil {
     for (Object item : list) {
       sb.append(item).append(COMMA);
     }
-    return sb.toString();
+    return sb.substring(0, sb.length() - 1);
   }
 
   public static String join(String[] arr) {

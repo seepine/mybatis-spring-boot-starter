@@ -10,19 +10,17 @@
   <dependency>
     <groupId>com.seepine</groupId>
     <artifactId>spring-boot-starter-mybatis</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
   </dependency>
   <!-- mybatis-plus
   <dependency>
     <groupId>com.baomidou</groupId>
     <artifactId>mybatis-plus-boot-starter</artifactId>
-    <version>${mybatis-plus.version}</version>
   </dependency>
   <dependency>
     <groupId>com.baomidou</groupId>
     <artifactId>mybatis-plus-extension</artifactId>
-    <version>${mybatis-plus.version}</version>
-  </dependency> -->
+  </dependency> -->0
   <!--mysql
   <dependency>
     <groupId>mysql</groupId>
