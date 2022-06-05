@@ -5,7 +5,7 @@
 ## Dependencies
 
 - Latest
-  Version: [![Maven Central](https://img.shields.io/maven-central/v/com.seepnie/mybatis-spring-boot-starter.svg)](https://search.maven.org/search?q=g:com.seepine%20a:mybatis-spring-boot-starter)
+  Version: [![Maven Central](https://img.shields.io/maven-central/v/com.seepine/mybatis-spring-boot-starter.svg)](https://search.maven.org/search?q=g:com.seepine%20a:mybatis-spring-boot-starter)
 - Maven:
 
 ```xml
