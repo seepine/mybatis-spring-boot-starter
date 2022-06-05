@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.seepine</groupId>
-  <artifactId>spring-boot-starter-mybatis</artifactId>
-  <version>0.0.3</version>
+  <artifactId>mybatis-spring-boot-starter</artifactId>
+  <version>0.0.4</version>
 
 
-  <name>spring-boot-starter-mybatis</name>
+  <name>mybatis-spring-boot-starter</name>
   <url>https://github.com/seepine/spring-boot-starter-mybatis</url>
   <description>Spring Boot Mybatis Dependencies</description>
 
@@ -34,14 +34,14 @@
   <!--scm-->
   <scm>
     <url>https://seepine.com</url>
-    <connection>scm:git:https://github.com/seepine/spring-boot-starter-mybatis.git</connection>
-    <developerConnection>scm:git:https://github.com/seepine/spring-boot-starter-mybatis.git</developerConnection>
+    <connection>scm:git:https://github.com/seepine/mybatis-spring-boot-starter.git</connection>
+    <developerConnection>scm:git:https://github.com/seepine/mybatis-spring-boot-starter.git</developerConnection>
   </scm>
 
   <properties>
     <java.version>1.8</java.version>
-    <spring-boot.version>2.6.6</spring-boot.version>
-    <mybatis-plus.version>3.5.1</mybatis-plus.version>
+    <spring-boot.version>2.7.0</spring-boot.version>
+    <mybatis-plus.version>3.5.2</mybatis-plus.version>
   </properties>
 
 

@@ -4,13 +4,17 @@
 
 ## Dependencies
 
+- Latest
+  Version: [![Maven Central](https://img.shields.io/maven-central/v/com.seepnie/mybatis-spring-boot-starter.svg)](https://search.maven.org/search?q=g:com.seepine%20a:mybatis-spring-boot-starter)
+- Maven:
+
 ```xml
 
 <dependencys>
   <dependency>
     <groupId>com.seepine</groupId>
-    <artifactId>spring-boot-starter-mybatis</artifactId>
-    <version>0.0.3</version>
+    <artifactId>mybatis-spring-boot-starter</artifactId>
+    <version>${LatestVersion}</version>
   </dependency>
   <!-- mybatis-plus
   <dependency>
@@ -20,7 +24,7 @@
   <dependency>
     <groupId>com.baomidou</groupId>
     <artifactId>mybatis-plus-extension</artifactId>
-  </dependency> -->0
+  </dependency> -->
   <!--mysql
   <dependency>
     <groupId>mysql</groupId>
