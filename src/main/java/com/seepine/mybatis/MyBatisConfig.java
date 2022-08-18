@@ -30,15 +30,14 @@ public class MyBatisConfig {
   @Bean
   public MybatisPlusInterceptor mybatisPlusInterceptor() {
     MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
-    // 分页插件
-    interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
-    // 防全表更新与删除插件 https://baomidou.com/pages/333106/#blockattackinnerinterceptor
-    interceptor.addInnerInterceptor(new BlockAttackInnerInterceptor());
     // 多租户
     if (tenantProperties.getEnabled()) {
       interceptor.addInnerInterceptor(new TenantInnerInterceptor(tenantProperties));
     }
-
+    // 分页插件
+    interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
+    // 防全表更新与删除插件 https://baomidou.com/pages/333106/#blockattackinnerinterceptor
+    interceptor.addInnerInterceptor(new BlockAttackInnerInterceptor());
     return interceptor;
   }
 
