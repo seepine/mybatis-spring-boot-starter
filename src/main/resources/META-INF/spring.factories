@@ -2,5 +2,7 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.seepine.mybatis.JacksonConfig,\
   com.seepine.mybatis.AutoConfiguration,\
   com.seepine.mybatis.tenant.TenantApplicationRunner,\
+  com.seepine.mybatis.tenant.interceptor.config.TenantServiceConfiguration,\
+  com.seepine.mybatis.tenant.interceptor.config.TenantInterceptorConfiguration,\
   com.seepine.mybatis.converter.EnumWebMvcConfig,\
   com.seepine.mybatis.MyBatisConfig

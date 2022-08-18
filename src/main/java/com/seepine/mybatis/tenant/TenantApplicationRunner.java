@@ -32,35 +32,39 @@ public class TenantApplicationRunner implements ApplicationRunner {
     if (Boolean.TRUE.equals(tenantProperties.getEnabled())) {
       log.info("===   start scan tenant table name   ===");
       // spring工具类，可以获取指定路径下的全部类
-      ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
-      try {
-        String pattern =
-            ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX
-                + ClassUtils.convertClassNameToResourcePath(tenantProperties.getScanPackage())
-                + tenantProperties.getResourcePattern();
-        Resource[] resources = resourcePatternResolver.getResources(pattern);
-        // MetadataReader 的工厂类
-        MetadataReaderFactory readerFactory =
-            new CachingMetadataReaderFactory(resourcePatternResolver);
-        for (Resource resource : resources) {
-          // 用于读取类信息
-          MetadataReader reader = readerFactory.getMetadataReader(resource);
-          // 扫描到的class
-          String classname = reader.getClassMetadata().getClassName();
-          Class<?> clazz = Class.forName(classname);
-          if (clazz != null) {
-            // 判断
-            if (hasField(clazz.getSuperclass())) {
-              TenantUtil.addIgnoreTable(rebuildClassName(classname));
-            } else if (hasField(clazz)) {
-              TenantUtil.addIgnoreTable(rebuildClassName(classname));
-            }
-          }
-        }
-        log.info("{}", TenantUtil.getTables().toString());
-        log.info("===   tenant table name finish   ===");
-      } catch (IOException | ClassNotFoundException ignored) {
+      for (String scanPackage : tenantProperties.getScanPackages()) {
+        addIgnoredTables(scanPackage);
       }
+      log.info("{}", TenantUtil.getTables().toString());
+      log.info("===   tenant table name finish   ===");
+    }
+  }
+
+  private void addIgnoredTables(String scanPackage) {
+    ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
+    try {
+      String pattern =
+          ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX
+              + ClassUtils.convertClassNameToResourcePath(scanPackage)
+              + tenantProperties.getResourcePattern();
+      Resource[] resources = resourcePatternResolver.getResources(pattern);
+      // MetadataReader 的工厂类
+      MetadataReaderFactory readerFactory =
+          new CachingMetadataReaderFactory(resourcePatternResolver);
+      for (Resource resource : resources) {
+        // 用于读取类信息
+        MetadataReader reader = readerFactory.getMetadataReader(resource);
+        // 扫描到的class
+        String classname = reader.getClassMetadata().getClassName();
+        Class<?> clazz = Class.forName(classname);
+        // 判断
+        if (hasField(clazz.getSuperclass())) {
+          TenantUtil.addIgnoreTable(rebuildClassName(classname));
+        } else if (hasField(clazz)) {
+          TenantUtil.addIgnoreTable(rebuildClassName(classname));
+        }
+      }
+    } catch (IOException | ClassNotFoundException ignored) {
     }
   }
 

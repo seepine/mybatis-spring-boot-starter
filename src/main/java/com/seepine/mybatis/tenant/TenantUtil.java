@@ -43,23 +43,21 @@ public class TenantUtil {
    *
    * @param tenantId 租户id
    */
-  void setTenantId(Object tenantId) {
+  public void setTenantId(Object tenantId) {
     THREAD_LOCAL_TENANT.set(tenantId);
   }
 
   /**
    * 获取TTL中的租户ID
    *
-   * @param <T> T
    * @return 租户id
    */
-  @SuppressWarnings("unchecked")
-  public <T> T getTenantId() {
-    return (T) THREAD_LOCAL_TENANT.get();
+  public String getTenantId() {
+    return THREAD_LOCAL_TENANT.get().toString();
   }
 
   /** 清理 */
-  void clear() {
+  public void clear() {
     THREAD_LOCAL_TENANT.remove();
   }
   /**
@@ -80,6 +78,24 @@ public class TenantUtil {
       log.debug("TenantBroker 还原租户{} <- {}", pre, tenant);
       setTenantId(pre);
     }
+  }
+  /**
+   * 以某个租户的身份运行
+   *
+   * @param tenant 租户id
+   * @param func func
+   */
+  public void run(Long tenant, Run func) {
+    run(tenant.toString(), func);
+  }
+  /**
+   * 以某个租户的身份运行
+   *
+   * @param tenant 租户id
+   * @param func func
+   */
+  public void run(Integer tenant, Run func) {
+    run(tenant.toString(), func);
   }
   /**
    * 以某个租户的身份运行
@@ -107,11 +123,22 @@ public class TenantUtil {
    *
    * @param tenant 租户ID
    * @param func func
+   * @param <R> R
+   * @return R
+   */
+  public <T, R> R apply(T tenant, Apply<R> func) {
+    return applyAs(tenant, (val) -> func.apply());
+  }
+  /**
+   * 以某个租户的身份运行
+   *
+   * @param tenant 租户ID
+   * @param func func
    * @param <T> T
    * @return T
    */
-  public <T> T applyAs(Long tenant, ApplyAs<Long, T> func) {
-    final Long pre = getTenantId();
+  public <T, R> R applyAs(T tenant, ApplyAs<T, R> func) {
+    final String pre = getTenantId();
     try {
       log.debug("TenantBroker 切换租户{} -> {}", pre, tenant);
       setTenantId(tenant);
@@ -149,6 +176,17 @@ public class TenantUtil {
      * @throws Exception 异常
      */
     void run(T tenantId) throws Exception;
+  }
+
+  @FunctionalInterface
+  public interface Apply<R> {
+    /**
+     * 执行业务逻辑,返回一个值
+     *
+     * @return R
+     * @throws Exception 异常
+     */
+    R apply() throws Exception;
   }
 
   @FunctionalInterface
