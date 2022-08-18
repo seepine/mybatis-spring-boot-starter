@@ -1,4 +1,4 @@
-# spring-boot-starter-mybatis
+# mybatis-spring-boot-starter
 
 > Easy Spring Boot Mybatis Dependencies
 
@@ -16,6 +16,7 @@
     <artifactId>mybatis-spring-boot-starter</artifactId>
     <version>${LatestVersion}</version>
   </dependency>
+  <!-- 以下包会自动引入 -->
   <!-- mybatis-plus
   <dependency>
     <groupId>com.baomidou</groupId>
