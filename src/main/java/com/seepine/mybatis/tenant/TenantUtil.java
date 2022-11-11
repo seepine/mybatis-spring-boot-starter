@@ -72,7 +72,10 @@ public class TenantUtil {
       log.debug("TenantBroker 切换租户{} -> {}", pre, tenant);
       setTenantId(tenant);
       func.run();
+    } catch (RuntimeException e) {
+      throw e;
     } catch (Exception e) {
+      e.printStackTrace();
       throw new TenantBrokerException(e.getMessage(), e);
     } finally {
       log.debug("TenantBroker 还原租户{} <- {}", pre, tenant);
@@ -110,7 +113,10 @@ public class TenantUtil {
       log.debug("TenantBroker 切换租户{} -> {}", pre, tenant);
       setTenantId(tenant);
       func.run(tenant);
+    } catch (RuntimeException e) {
+      throw e;
     } catch (Exception e) {
+      e.printStackTrace();
       throw new TenantBrokerException(e.getMessage(), e);
     } finally {
       log.debug("TenantBroker 还原租户{} <- {}", pre, tenant);
@@ -143,7 +149,10 @@ public class TenantUtil {
       log.debug("TenantBroker 切换租户{} -> {}", pre, tenant);
       setTenantId(tenant);
       return func.apply(tenant);
+    } catch (RuntimeException e) {
+      throw e;
     } catch (Exception e) {
+      e.printStackTrace();
       throw new TenantBrokerException(e.getMessage(), e);
     } finally {
       log.debug("TenantBroker 还原租户{} <- {}", pre, tenant);
