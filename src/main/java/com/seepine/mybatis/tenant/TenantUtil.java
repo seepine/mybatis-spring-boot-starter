@@ -44,7 +44,9 @@ public class TenantUtil {
    * @param tenantId 租户id
    */
   public void setTenantId(Object tenantId) {
-    THREAD_LOCAL_TENANT.set(tenantId);
+    if (tenantId != null) {
+      THREAD_LOCAL_TENANT.set(tenantId);
+    }
   }
 
   /**
@@ -53,7 +55,8 @@ public class TenantUtil {
    * @return 租户id
    */
   public String getTenantId() {
-    return THREAD_LOCAL_TENANT.get().toString();
+    Object tenantId = THREAD_LOCAL_TENANT.get();
+    return tenantId == null ? null : tenantId.toString();
   }
 
   /** 清理 */
@@ -75,7 +78,6 @@ public class TenantUtil {
     } catch (RuntimeException e) {
       throw e;
     } catch (Exception e) {
-      e.printStackTrace();
       throw new TenantBrokerException(e.getMessage(), e);
     } finally {
       log.debug("TenantBroker 还原租户{} <- {}", pre, tenant);
