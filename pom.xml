@@ -6,7 +6,7 @@
 
   <groupId>com.seepine</groupId>
   <artifactId>mybatis-spring-boot-starter</artifactId>
-  <version>0.1.2</version>
+  <version>0.1.3</version>
 
 
   <name>mybatis-spring-boot-starter</name>
